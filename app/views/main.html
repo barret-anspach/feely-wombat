@@ -13,18 +13,35 @@
     <li>{{item}}
     </li>
 </ul>
+    <p>TOTAL STRAPS = {{strapQuery.items.length}}</p>
     <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <article class="well" ng-repeat="item in items">
-                {{item}}
-                <!--<h4>{{item.mfgModelCatalog}}</h4>-->
-                <!--<p>{{item.productTitle}}</p>-->
-            </article>
-        </div>
+        
+        <dl class="dl-horizontal" ng-repeat='item in strapQuery.items'>
+            <dt>Name</dt>
+            <dd>{{item.name}}</dd>
+            <dt>Type</dt>
+            <dd>{{item.type}}</dd>
+            <dt>Quantity</dt>
+            <dd>{{item.quanitity}}</dd>
+        </dl>
     </div>
-    {{items}}
+
 </div>
 
+
+        <div>
+            <p>Strap</p>
+            <dt>Name</dt>
+            <dd><input type='text' ng-model='strap.name' ng-change='strap.specificsChanged = true'></dd>
+            <dt>Type</dt>
+            <dd><input type='text' ng-model='strap.type' ng-change='strap.specificsChanged = true'></dd>
+            <dt>Quantity</dt>
+            <!--NOTE I SPELLED QUANTITY WRONG LAST NIGHT ON YOUR PARSE STRAP CLASS-->
+            <dd><input type='number' ng-model='strap.quanitity' ng-change='strap.specificsChanged = true'></dd>
+            <button class='btn btn-primary' ng-click='saveStrap(strap)' ng-disabled='!strap.specificsChanged'> Save Strap</button>
+        </div>
+        <br/>
+        <div class='alert alert-success' ng-show='message'>{{message}}</div>
 
 <div ng-include="'/views/footer.html'"></div>
 
