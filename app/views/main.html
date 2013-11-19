@@ -1,0 +1,30 @@
+<div ng-include="'/views/nav-bar.html'"></div>
+
+<div class="lead" ng-controller="MainCtrl">
+    <div class="jumbotron">
+        <h1>{{headline}}</h1>
+    </div>
+
+    <div class="row marketing">
+        <h4>Handmade Italian watch straps.</h4>
+        <p>Using only the finest materials available, and with techniques honed over generations, our artisans craft each and every watch strap we make by hand.</p>
+    </div>
+<ul ng-repeat="item in items">
+    <li>{{item}}
+    </li>
+</ul>
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <article class="well" ng-repeat="item in items">
+                {{item}}
+                <!--<h4>{{item.mfgModelCatalog}}</h4>-->
+                <!--<p>{{item.productTitle}}</p>-->
+            </article>
+        </div>
+    </div>
+    {{items}}
+</div>
+
+
+<div ng-include="'/views/footer.html'"></div>
+
