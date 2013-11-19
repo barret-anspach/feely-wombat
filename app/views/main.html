@@ -2,11 +2,11 @@
 
 <div class="lead" ng-controller="MainCtrl">
     <div class="jumbotron">
-        <h1>{{headline}}</h1>
+        <h1>{{headline.title}}</h1>
     </div>
 
     <div class="row marketing">
-        <h4>Handmade Italian watch straps.</h4>
+        <h4>{{headline.subtitle}}</h4>
         <p>Using only the finest materials available, and with techniques honed over generations, our artisans craft each and every watch strap we make by hand.</p>
     </div>
 <ul ng-repeat="item in items">
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-3">
             <article class="well" ng-repeat="item in items">
-                {{item}}
+                {{items}}
                 <!--<h4>{{item.mfgModelCatalog}}</h4>-->
                 <!--<p>{{item.productTitle}}</p>-->
             </article>
