@@ -1,47 +1,78 @@
-<div ng-include="'/views/nav-bar.html'"></div>
+<div ng-include="'/views/nav-bar.html'" xmlns="http://www.w3.org/1999/html"></div>
 
-<div class="lead" ng-controller="MainCtrl">
-    <div class="jumbotron">
+<div class="" ng-controller="MainCtrl">
+    <div class="lead jumbotron">
         <h1>{{headline}}</h1>
     </div>
 
-    <div class="row marketing">
+    <div class="lead row marketing">
         <h4>Handmade Italian watch straps.</h4>
-        <p>Using only the finest materials available, and with techniques honed over generations, our artisans craft each and every watch strap we make by hand.</p>
-    </div>
-<ul ng-repeat="item in items">
-    <li>{{item}}
-    </li>
-</ul>
-    <p>TOTAL STRAPS = {{strapQuery.items.length}}</p>
-    <div class="row">
-        
-        <dl class="dl-horizontal" ng-repeat='item in strapQuery.items'>
-            <dt>Name</dt>
-            <dd>{{item.name}}</dd>
-            <dt>Type</dt>
-            <dd>{{item.type}}</dd>
-            <dt>Quantity</dt>
-            <dd>{{item.quanitity}}</dd>
-        </dl>
+        <p>Using only the finest materials available, and with techniques honed over generations, our artisans craft each and every watch strap by hand.</p>
+
+        <h4>Find your watch strap.</h4>
     </div>
 
-</div>
-
-
-        <div>
-            <p>Strap</p>
-            <dt>Name</dt>
-            <dd><input type='text' ng-model='strap.name' ng-change='strap.specificsChanged = true'></dd>
-            <dt>Type</dt>
-            <dd><input type='text' ng-model='strap.type' ng-change='strap.specificsChanged = true'></dd>
-            <dt>Quantity</dt>
-            <!--NOTE I SPELLED QUANTITY WRONG LAST NIGHT ON YOUR PARSE STRAP CLASS-->
-            <dd><input type='number' ng-model='strap.quanitity' ng-change='strap.specificsChanged = true'></dd>
-            <button class='btn btn-primary' ng-click='saveStrap(strap)' ng-disabled='!strap.specificsChanged'> Save Strap</button>
+    <div class="panel panel-default marketing">
+        <div class="panel-heading">
+            <h3>Straps <span class="label label-primary pull-right">{{strapQuery.items.length}} Straps</span></h3>
         </div>
-        <br/>
-        <div class='alert alert-success' ng-show='message'>{{message}}</div>
+        <!--{{filter}}-->
+        <table class="table">
+            <thead>
+                <th>Name <a ng-click="filter = 'name'">+</a></th>
+                <th>Type <a ng-click="filter = 'type'">+</a></th>
+                <th>Quantity <a ng-click="filter = 'quantity'">+</a></th>
+                <th>Update</th>
+            </thead>
+            <tr class="form-group form-inline" ng-repeat="strap in strapQuery.items | orderBy:filter">
+                <td><input type="text" class="form-control" placeholder="Name" ng-model="strap.name" ng-change='strap.specificsChanged = true'></td>
+                <td><input type="text" class="form-control" placeholder="Type" ng-model="strap.type" ng-change='strap.specificsChanged = true'></td>
+                <td><input type="number" class="form-control" placeholder="Qty" ng-model="strap.quantity" ng-change='strap.specificsChanged = true'></td>
+                <td>
+                    <div class="btn-group btn-group-md">
+                        <button class="btn btn-md btn-primary" ng-click="save(strap)" ng-disabled="!strap.specificsChanged"><span class="glyphicon glyphicon-upload"></span></button>
+                        <button class="btn btn-md btn-danger" ng-click="deleteStrap(strap)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="panel-footer">
+            <div class="alert alert-warning" ng-show="deletedMessage">{{deletedMessage}}</div>
+            <div class="alert alert-info" ng-show="updatedMessage">{{updatedMessage}}</div>
+        </div>
+    </div>
+
+    <div class="panel panel-default marketing">
+        <div class="panel-heading">
+            <h3>Create New Strap</h3>
+        </div>
+
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Save Strap</th>
+            </thead>
+            <tr>
+                <td><input type='text' class="form-control" placeholder="Name" ng-model='newStrap.name' ng-change='strapNew.specificsChanged = true'></td>
+                <td><input type='text' class="form-control" placeholder="Type" ng-model='newStrap.type' ng-change='strapNew.specificsChanged = true'></td>
+                <td><input type='number' class="form-control" placeholder="Qty" ng-model='newStrap.quantity' ng-change='strapNew.specificsChanged = true'></td>
+                <td>
+                    <button class='btn btn-md btn-success' type="button" ng-click='createStrap(strapNew)' ng-disabled='!strapNew.specificsChanged'>
+                        CREATE <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <div class="panel-footer">
+            <div class="alert alert-success" ng-show="savedMessage">{{savedMessage}}</div>
+        </div>
+
+    </div>
+</div>
 
 <div ng-include="'/views/footer.html'"></div>
 

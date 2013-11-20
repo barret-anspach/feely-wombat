@@ -20,7 +20,6 @@ strapApp.factory('monocle', ['$http', 'parseWrapper', ($http, parseWrapper) ->
 
 
 
-
 	monocle =
 		initialize: () ->
 			$http.defaults.headers.common['X-Parse-Application-Id'] = 'vsph4BARvMHNuQJoRU1lDxhxg1otvLCa4ArSrERA'    # beat-1
