@@ -19,7 +19,7 @@
 
 'use strict';
 
-angular.module('LensApp')
+angular.module('schyllingApp')
 	.factory('s3', function ($q, $rootScope, monocle) {
 	    // Service logic
 	    // ...

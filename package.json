@@ -1,7 +1,11 @@
 {
   "name": "schylling",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "matchdep": "~0.3.0",
+    "grunt-open": "~0.2.2",
+    "grunt-contrib-livereload": "~0.1.2"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",

@@ -11,40 +11,89 @@ angular.module('schyllingApp')
 //        );
 //
 //        // Title property
-//        Catalog.prototype.__defineGetter__("productTitle", function() {
+//        Presentation.prototype.__defineGetter__("title", function() {
 //            return this.get("title");
 //        });
-//        Catalog.prototype.__defineSetter__("productTitle", function(aValue) {
+//        Presentation.prototype.__defineSetter__("title", function(aValue) {
 //            return this.set("title", aValue);
 //        });
 //
-//        return Catalog;
+//        return Presentation;
 //    })
 
-    .controller('MainCtrl', ['$scope', 'ParseService', function($scope, ParseService) {
-        $scope.headline = {
-            title: "Artisan of Italy", subtitle: "Handmade Italian watch straps."
-        };
+    .controller('MainCtrl', ['$scope', 'ParseService', 'monocle', function($scope, ParseService, monocle) {
+        $scope.headline = "Handmade.";
 
-        $scope.strap = Parse.Object("Strap");
-        $scope.strapCollection = Parse.Collection({model:$scope.strap});
+//			You can do queries on any class you have set up on parse and in your monocle wrapper like this
+			$scope.strapQuery = monocle.Strap.query();
 
-        $scope.itemQuery = new Parse.Query();
 
-//        $scope.collectionQuery = new Parse.Query("Strap");
+//			These queries have to be .fetch() ed to get data from them  -- this fetch method returns a success and error
+//			call back like so == also, the response to the query is always added to the query object as $scope.queryObject.items
+//			So you can reference that in an ng repeat
+			$scope.strapQuery.fetch().success(function(data){
+//				process data with an angular.forEach --- or just leave it alone -- just remember that data.items is the list
+//				of results from Parse
+				console.log(data);
+			}).error(function(err){
+//						handle error
+						console.log(err)
+					});
 
-        $scope.itemQuery.equalTo("ASIN", "B009PP1IYI");
-        $scope.itemQuery.find({
-            success: function(items) {
-                angular.forEach(items, function(v, i){
-                    console.log(items[0].attributes);
-                    $scope.items.push(v.id);
-                })
+//			To load a single document/object (ie strap) from your collection (ie Strap) initialize it by calling a
+//      new monocle.ClassName(id):
 
-            },
-            error: function(error) {
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
+/*			$scope.strap = new monocle.Strap("D1ySwFXLmA");
+
+//			Then load that object like so -- very similarly to the way you .fetch() the query
+			$scope.strap.load().success(function(data){
+				console.log(data);
+			}).error(function(err){
+						console.log(err);
+					});*/
+
+//			Check out the ParseWrapper.coffee to see other available object or query methods...
+//			For instance, you can save a strap by:
+
+			$scope.strapNew = new monocle.Strap();
+
+			$scope.strapNew.type = '';
+			$scope.strapNew.name = '';
+            $scope.strapNew.quantity = '';
+
+
+			$scope.saveStrap = function(strapNew){
+				strapNew.specificsChanged = false;
+				strapNew.save().success(function(data){
+					console.log('saved strap successfully');
+					$scope.savedMessage = "Saved Strap Successfully"
+				}).error(function(err){
+//                      handle error
+                        console.log(err)
+                    });
+			};
+
+//
+
+//        $scope.strap = Parse.Object("Strap");
+//        $scope.strapCollection = Parse.Collection({model:$scope.strap});
+//
+//        $scope.query = new Parse.Query()
+//
+////        $scope.collectionQuery = new Parse.Query("Strap");
+//
+//        $scope.itemQuery.equalTo("ASIN", "B009PP1IYI");
+//        $scope.itemQuery.find({
+//            success: function(items) {
+//                console.log(items[0].attributes);
+//              angular.forEach(items, function(v, i){
+//                  $scope.items.push(v.id);
+//              })
+//
+//            },
+//            error: function(error) {
+//                alert("Error: " + error.code + " " + error.message);
+//            }
+//        });
 
     }]);
