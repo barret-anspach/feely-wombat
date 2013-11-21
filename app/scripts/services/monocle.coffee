@@ -17,7 +17,7 @@ strapApp.factory('monocle', ['$http', 'parseWrapper', ($http, parseWrapper) ->
 			name: undefined,
 			type: undefined,
 			quantity: undefined,
-      imgUrl: undefined,
+			imgUrl: undefined
 
 
 

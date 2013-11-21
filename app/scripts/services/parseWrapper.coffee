@@ -412,6 +412,34 @@ angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$coo
 				throw errorResponse;
 			)
 
+		delete: () ->
+			config = method: "DELETE", url: this._getURL(this)
+
+			# At this point we only allow 1 ajax call to be active at a time for a given resource,
+			# so if we already have one going, note it in console and bail
+			if (this.isBusy)
+				window.console.log("Ajax call to #{config.method}: #{config.url} was aborted because another ajax call is already in progress")
+				return
+
+			this.isDeleting = true;
+			this.isBusy = true;
+
+			ajaxCall = _http(config).success( (response) =>
+				this.isDeleting = this.isBusy = false;
+
+				# we've saved any collection modifications, so clear the collections
+				for own prop of this
+					method = if this[prop]? then this[prop]._clearOperations else null
+					if (typeof method == 'function')
+						this[prop]._clearOperations();
+
+				return this;
+
+			).error( (errorResponse) =>
+				this.isDeleting = this.isBusy = false;
+				throw errorResponse;
+			)
+
 		_getURL: () ->
 			return "https://api.parse.com/1/classes/#{this.constructor.parseClassName}" if this.isNew()
 			return "https://api.parse.com/1/classes/#{this.constructor.parseClassName}/#{this.objectId}"
