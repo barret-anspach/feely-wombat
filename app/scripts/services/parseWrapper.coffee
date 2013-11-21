@@ -361,7 +361,6 @@ angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$coo
 		isNew: () ->
 			return this.objectId == null || this.objectId == undefined;
 
-
 		# ------- asPointer ----------
 		# returns the Parse pointer representation of this object.  Used in where clauses for comparing objects.
 		# Place.query({metroArea: metroArea.asPointer()})

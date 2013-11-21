@@ -30,7 +30,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div ng-include="'/views/nav-bar.html'" xmlns="http://www.w3.org/1999/html"></div>
+    <div class="site-container" ng-view=""></div>
+    <div ng-include="'/views/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

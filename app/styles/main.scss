@@ -1,11 +1,22 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$black: #231d1b; // #231d1b black
+$pink: #ffebdb; // #ffebdb pink
+$otherColor: #ffebdb + #231d1b; // Color mix!
+$containerWidth: 700px;
+$smContainerWidth: 80%;
+$gutter: 14px;
+$catalogWidth: ($containerWidth / 3) - ((2 * $gutter) / 3);
+$catalogThirdWidth: $catalogWidth - $gutter;
+$jumbotronSize: $containerWidth / (4 * $catalogWidth);
+$catalogGridThird: 3;
+
 
 @import 'sass-bootstrap/lib/bootstrap';
 
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
-    color: #000;
+    color: $black;
     padding: 0.2em 0;
 }
 
@@ -13,6 +24,24 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 body {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.site-container{
+    width: $containerWidth; // If device screen is narrower than 700px, switch to
+    @media screen and (max-width: 700px) {
+      width: $smContainerWidth;
+    }
+    margin: 0 auto;
+}
+
+nav ul li {
+    .navy {
+        color: $black;
+    }
+}
+ul nav li.active a {
+    color: #ffffff;
+    background-color: $black;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -68,11 +97,15 @@ body {
     margin-top: 30px;
     text-align: center;
     border-bottom: 1px solid #e5e5e5;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+    background-color: $black;
+    .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+    }
+    h1 {
+      color: $otherColor;
+      font-size: $jumbotronSize;
+    }
 }
 
 /* Supporting marketing content */
@@ -84,10 +117,57 @@ body {
     margin-top: 28px;
 }
 
+.catalog {
+    padding: 0px;
+    height: auto;
+    .search {
+        margin: 14px 0;
+    }
+    .catalog-list {
+        margin:40px 0;
+        .catalog-item {
+            width:$catalogWidth;
+            height:auto;
+            margin:14px $gutter 14px 0;
+            display: inline;
+            float:left;
+            .catalog-item-imgUrl {
+                width: $catalogWidth;
+                height: $catalogWidth;
+                padding: 0px;
+                margin-bottom: 14px;
+                background-color: $pink;
+            }
+        }
+        .catalog-item:nth-child(#{$catalogGridThird}n){
+            width:$catalogThirdWidth;
+            margin:14px 0 14px 0;
+            @media screen and (max-width:700px) {
+                width:$catalogWidth;
+            }
+        }
+    }
+    .input-group-addon {
+        background-color: $pink;
+    }
+
+    .catalog-list.clearfix {
+        display: inline;
+        &:after {
+            content: ".";
+            display: inline;
+            clear: both;
+            visibility: hidden;
+            line-height: 0;
+            height: 0;
+        }
+    }
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 100% ;
     }
 
     /* Remove the padding we set earlier */
@@ -106,3 +186,4 @@ body {
         border-bottom: 0;
     }
 }
+
