@@ -4,25 +4,36 @@ angular.module('schyllingApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.router'
 ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/nav-bar', {
-        templateUrl: 'views/nav-bar.html',
-        controller: 'NavBarCtrl'
-      })
-      .when('/footer', {
-        templateUrl: 'views/footer.html',
-        controller: 'FooterCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(function ($stateProvider, $urlRouterProvider) {
+    // The other states:
+    $stateProvider
+        .$state('catalog', {
+            url: '/catalog',
+            templateUrl: 'views/catalog.html',
+            controller: 'CatalogCtrl'
+        })
+        .$state('main', {
+            url: '/',
+            views: {
+                "main": {template: 'main'}
+            },
+            controller: 'MainCtrl'
+        })
+        .$state('footer', {
+            url: '/footer',
+            templateUrl: 'views/partials/footer.html',
+            controller: 'FooterCtrl'
+        })
+        .$state('admin', {
+            url: '/admin',
+            templateUrl: 'views/admin.html',
+            controller: 'AdminCtrl'
+        })
+    // For any unmatched url, redirect to /
+    $urlRouterProvider.otherwise("/");
   })
 
   .service('ParseService', [function() {

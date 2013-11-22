@@ -15,8 +15,6 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
-    <!-- Parse js code source -->
-      <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
 
   </head>
   <body ng-app="schyllingApp">
@@ -30,9 +28,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'/views/nav-bar.html'" xmlns="http://www.w3.org/1999/html"></div>
-    <div class="site-container" ng-view=""></div>
-    <div ng-include="'/views/footer.html'"></div>
+    <div class="site-container" ui-view></div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -47,6 +44,9 @@
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/sass-bootstrap/js/affix.js"></script>
@@ -75,6 +75,9 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/nav-bar.js"></script>
         <script src="scripts/controllers/footer.js"></script>
+        <script src="scripts/controllers/catalog.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/marketing.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/coffee.js -->
