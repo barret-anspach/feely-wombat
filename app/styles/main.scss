@@ -27,21 +27,56 @@ body {
 }
 
 .site-container{
-    width: $containerWidth; // If device screen is narrower than 700px, switch to
-    @media screen and (max-width: 700px) {
-      width: $smContainerWidth;
+    width: $containerWidth; // If device screen is narrower than 768px, switch to
+    @media screen and (max-width: 768px) {
+        width: $smContainerWidth;
     }
     margin: 0 auto;
 }
 
-nav ul li {
-    .navy {
-        color: $black;
+/* NAV-BAR stuff goes here */
+nav.nav-bar {
+    position: relative;
+    display: block;
+    width: $containerWidth;
+    @media screen and (max-width: 768px) {
+        width: $smContainerWidth;
     }
-}
-ul nav li.active a {
-    color: #ffffff;
-    background-color: $black;
+    height: 70px;
+    margin-bottom: 40px;
+    h1.brand-text {
+        width: auto;
+        float: left;
+    }
+    ul.nav-bar-list {
+        display: block;
+        clear: both;
+        /*width: $containerWidth;*/
+        margin: 0px;
+        li {
+            display:inline;
+            float: right;
+            list-style-type: none;
+            padding: 0 $gutter;
+            a {
+                color:$black;
+                text-decoration: none;
+            }
+            a:hover {
+                color:$pink;
+                text-decoration: none;
+            }
+        }
+        li.active {
+            background-color: $pink;
+        }
+        li.active h4 a {
+            color:$black;
+        }
+        li.active:hover h4 a {
+            color:$black;
+        }
+    }
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -132,12 +167,17 @@ ul nav li.active a {
             margin:14px $gutter 14px 0;
             display: inline;
             float:left;
-            .catalog-item-imgUrl {
+            .catalog-item-img {
                 width: $catalogWidth;
                 height: $catalogWidth;
                 padding: 0px;
                 margin-bottom: 14px;
                 background-color: $pink;
+                overflow: hidden;
+            }
+            img.catalog-item-imgUrl {
+                width: $catalogWidth * 1.1;
+                height: $catalogWidth * 1.1;
             }
         }
         .catalog-item:nth-child(#{$catalogGridThird}n){

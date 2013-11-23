@@ -28,9 +28,30 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="site-container" ui-view></div>
+    <div class="site-container" ng-controller="AppCtrl">
+        <nav class="nav-bar" role="navigation" ng-controller="NavBarCtrl">
+            <h1 class="brand-text">Artisan of Italy</h1>
+            <ul class="nav-bar-list">
+                <li ng-class="{ active: $state.includes('admin') }"><h4><a class="" ui-sref="admin">Admin</a></h4></li>
+                <li ng-class="{ active: $state.includes('about') }"><h4><a class="" ui-sref="about">About Us</a></h4></li>
+                <li ng-class="{ active: $state.includes('catalog') }"><h4><a class="" ui-sref="catalog">Catalog</a></h4></li>
+                <li ng-class="{ active: $state.includes('main') }"><h4><a ui-sref="main">Home</a></h4></li>
+            </ul>
+        </nav>
+        <div class="clearfix"></div>
 
+        <div ui-view></div>
 
+        <div class="footer ">
+            <ul class="footer-options navbar-left">
+                <li>Support</li>
+                <li>Support</li>
+                <li>Support</li>
+                <li>Support</li>
+            </ul>
+        </div>
+        <div active-nav></div>
+    </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -78,6 +99,8 @@
         <script src="scripts/controllers/catalog.js"></script>
         <script src="scripts/controllers/admin.js"></script>
         <script src="scripts/controllers/marketing.js"></script>
+        <script src="scripts/controllers/application.js"></script>
+        <script src="scripts/directives/activeNav.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/coffee.js -->

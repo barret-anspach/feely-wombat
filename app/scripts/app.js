@@ -10,24 +10,22 @@ angular.module('schyllingApp', [
   .config(function ($stateProvider, $urlRouterProvider) {
     // The other states:
     $stateProvider
-        .$state('catalog', {
+        .state('catalog', {
             url: '/catalog',
             templateUrl: 'views/catalog.html',
             controller: 'CatalogCtrl'
         })
-        .$state('main', {
+        .state('main', {
             url: '/',
-            views: {
-                "main": {template: 'main'}
-            },
+            templateUrl: 'views/main.html',
             controller: 'MainCtrl'
         })
-        .$state('footer', {
+        .state('footer', {
             url: '/footer',
             templateUrl: 'views/partials/footer.html',
             controller: 'FooterCtrl'
         })
-        .$state('admin', {
+        .state('admin', {
             url: '/admin',
             templateUrl: 'views/admin.html',
             controller: 'AdminCtrl'
