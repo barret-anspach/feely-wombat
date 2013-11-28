@@ -2,6 +2,6 @@
 
 angular.module('schyllingApp')
 
-    .controller('MainCtrl', ['$scope', 'ParseService', 'monocle', '$log', function($scope, ParseService, monocle, $log) {
+    .controller('MainCtrl', ['$scope', 'monocle', '$log', function($scope, monocle, $log) {
         $scope.headline = "Handmade.";
     }]);

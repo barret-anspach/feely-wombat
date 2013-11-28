@@ -30,18 +30,19 @@
     <!-- Add your site or application content here -->
     <div class="site-container" ng-controller="AppCtrl">
         <nav class="nav-bar" role="navigation" ng-controller="NavBarCtrl">
-            <h1 class="brand-text">Artisan of Italy</h1>
             <ul class="nav-bar-list">
                 <li ng-class="{ active: $state.includes('admin') }"><h4><a class="" ui-sref="admin">Admin</a></h4></li>
                 <li ng-class="{ active: $state.includes('about') }"><h4><a class="" ui-sref="about">About Us</a></h4></li>
                 <li ng-class="{ active: $state.includes('catalog') }"><h4><a class="" ui-sref="catalog">Catalog</a></h4></li>
                 <li ng-class="{ active: $state.includes('main') }"><h4><a ui-sref="main">Home</a></h4></li>
             </ul>
+            <h1 class="brand-text">Artisan of Italy</h1>
         </nav>
         <div class="clearfix"></div>
 
         <div ui-view></div>
 
+        <!--<button ng-click="open()">Open</button>-->
         <div class="footer ">
             <ul class="footer-options navbar-left">
                 <li>Support</li>
@@ -67,9 +68,22 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
-    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+    <!--<script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>-->
 
         <!-- build:js scripts/plugins.js -->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>-->
         <script src="bower_components/sass-bootstrap/js/affix.js"></script>
         <script src="bower_components/sass-bootstrap/js/alert.js"></script>
         <script src="bower_components/sass-bootstrap/js/button.js"></script>
@@ -82,7 +96,10 @@
         <script src="bower_components/sass-bootstrap/js/tab.js"></script>
         <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
         <script src="bower_components/sass-bootstrap/js/popover.js"></script>
-        <!-- endbuild -->
+        <script src="bower_components/angular-bootstrap3/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/underscore/underscore-min.js"></script>
+
+    <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
         <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -98,8 +115,8 @@
         <script src="scripts/controllers/footer.js"></script>
         <script src="scripts/controllers/catalog.js"></script>
         <script src="scripts/controllers/admin.js"></script>
-        <script src="scripts/controllers/marketing.js"></script>
         <script src="scripts/controllers/application.js"></script>
+        <script src="scripts/controllers/strapViewer.js"></script>
         <script src="scripts/directives/activeNav.js"></script>
         <!-- endbuild -->
 

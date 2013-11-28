@@ -2,10 +2,12 @@
 
 angular.module('schyllingApp')
 
-    .controller('AdminCtrl', ['$scope', 'ParseService', 'monocle', '$log', function($scope, ParseService, monocle, $log) {
+    .controller('AdminCtrl', ['$scope', 'monocle', '$log', function($scope, monocle, $log) {
 
 //			You can do queries on any class you have set up on parse and in your monocle wrapper like this
-        $scope.strapQuery = monocle.Strap.query();
+//        $scope.strapQuery = monocle.Strap.query();
+
+
 
 //			HERE, I'M INSTANTIATING A NEW STRAP OBJECT -- WHICH IS WHAT YOUR VIEW WILL BE EDITING
         $scope.newStrap = new monocle.Strap();

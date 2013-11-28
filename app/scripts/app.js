@@ -5,7 +5,8 @@ angular.module('schyllingApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
     // The other states:
@@ -34,9 +35,9 @@ angular.module('schyllingApp', [
     $urlRouterProvider.otherwise("/");
   })
 
-  .service('ParseService', [function() {
+/*  .service('ParseService', [function() {
     var app_id = "vsph4BARvMHNuQJoRU1lDxhxg1otvLCa4ArSrERA";
     var js_key = "yITNrI3dpR8zFUGvRvrRzKp9RWZk3nf1KMILEn19";
     Parse.initialize(app_id, js_key);
-}]);
+}]);*/
 

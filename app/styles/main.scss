@@ -8,10 +8,12 @@ $gutter: 14px;
 $catalogWidth: ($containerWidth / 3) - ((2 * $gutter) / 3);
 $catalogThirdWidth: $catalogWidth - $gutter;
 $jumbotronSize: $containerWidth / (4 * $catalogWidth);
-$catalogGridThird: 3;
+$catalogGrid: 3;
 
 
 @import 'sass-bootstrap/lib/bootstrap';
+
+.nav, .pagination a { cursor: pointer; }
 
 .browsehappy {
     margin: 0.2em 0;
@@ -43,13 +45,14 @@ nav.nav-bar {
         width: $smContainerWidth;
     }
     height: 70px;
-    margin-bottom: 40px;
+    margin: 40px 0;
     h1.brand-text {
         width: auto;
         float: left;
     }
     ul.nav-bar-list {
         display: block;
+        top:14px;
         clear: both;
         /*width: $containerWidth;*/
         margin: 0px;
@@ -57,13 +60,14 @@ nav.nav-bar {
             display:inline;
             float: right;
             list-style-type: none;
+            margin-top: 24px;
             padding: 0 $gutter;
-            a {
+            h4 a {
                 color:$black;
                 text-decoration: none;
             }
-            a:hover {
-                color:$pink;
+            h4 a:hover {
+                color:$black;
                 text-decoration: none;
             }
         }
@@ -161,31 +165,35 @@ nav.nav-bar {
     }
     .catalog-list {
         margin:40px 0;
-        .catalog-item {
-            width:$catalogWidth;
-            height:auto;
-            margin:14px $gutter 14px 0;
-            display: inline;
-            float:left;
-            .catalog-item-img {
-                width: $catalogWidth;
-                height: $catalogWidth;
-                padding: 0px;
-                margin-bottom: 14px;
-                background-color: $pink;
-                overflow: hidden;
-            }
-            img.catalog-item-imgUrl {
-                width: $catalogWidth * 1.1;
-                height: $catalogWidth * 1.1;
-            }
+    }
+    .catalog-item {
+        width:$catalogWidth;
+        height:auto;
+        margin:14px $gutter 14px 0;
+        display: inline;
+        float:left;
+        .catalog-item-img {
+            width: $catalogWidth;
+            height: $catalogWidth;
+            padding: 0px;
+            margin-bottom: 14px;
+            background-color: $pink;
+            overflow: hidden;
         }
-        .catalog-item:nth-child(#{$catalogGridThird}n){
+        img.catalog-item-imgUrl {
+            width: $catalogWidth;
+            height: $catalogWidth;
+        }
+        .catalog-itemDetail-img {
             width:$catalogThirdWidth;
-            margin:14px 0 14px 0;
-            @media screen and (max-width:700px) {
-                width:$catalogWidth;
-            }
+            height:$catalogThirdWidth;
+        }
+    }
+    .catalog-item:nth-child(#{$catalogGrid}n){
+        width:$catalogThirdWidth;
+        margin:14px 0 14px 0;
+        @media screen and (max-width:700px) {
+            width:$catalogWidth;
         }
     }
     .input-group-addon {
@@ -203,6 +211,13 @@ nav.nav-bar {
             height: 0;
         }
     }
+}
+
+.modalDetail-imgUrl {
+    display: block;
+    width:$catalogWidth + $catalogThirdWidth;
+    height:$catalogWidth + $catalogThirdWidth;
+    margin: 0 auto;
 }
 
 /* Responsive: Portrait tablets and up */

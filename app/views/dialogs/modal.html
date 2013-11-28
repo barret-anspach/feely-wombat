@@ -1,0 +1,22 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <img class="modalDetail-imgUrl" ng-src="http://www.barretanspach.com/photos/Strap-Models-800/{{ strap.model }}-{{ strap.color }}.jpg">
+    </div>
+    <div class="modal-body">
+        <h1 class="modal-title">{{ strap.modelName }} <small>{{ strap.modelNo }}</small></h1>
+        <hr>
+        <span ng-switch on="strap.gender">
+            <span ng-switch-when="L"><b>Women's</b></span>
+            <span ng-switch-when="M"><b>Men's</b></span>
+        </span>
+        <span ng-switch on="strap.length">
+            <span ng-switch-when="L"><b>Long</b>,</span>
+            <span ng-switch-when="R"><b>Regular</b>,</span>
+        </span>
+        <span>{{ strap.size }}mm</span>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

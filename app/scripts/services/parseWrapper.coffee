@@ -1,4 +1,4 @@
-angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$cookieStore', '$q', ($http, $filter, $cookieStore, $q) ->
+angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$cookieStore', '$q', '$log', ($http, $filter, $cookieStore, $q, $log) ->
 
 	# A note about Promises:  Just wanted to document what I have learned about promises...
 	# I had originally thought that the promise object returned from a call would morph into the correct object when the
@@ -124,7 +124,7 @@ angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$coo
 			this.whereClause = whereClause
 			this.order = []
 			this.fieldsToInclude = []
-			this.limit = 500
+			this.limit = 100
 			this.skip = 0
 			this.isBusy = false
 			this.error = null
@@ -192,7 +192,6 @@ angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$coo
 
 			config = { method: "GET", url: this._getURL(), params: params, transformResponse: (data) => _parseTransformResponse(data, this.targetClass) }
 
-			window.console.log("QUERY:  #{config.method} #{config.url} with Params:#{config.params}")
 			collectionPromise = _http(config)
 			this.isBusy = true
 			this.collectionPromise = collectionPromise.then(
