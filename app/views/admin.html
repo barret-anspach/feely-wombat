@@ -1,0 +1,67 @@
+<div ng-controller="AdminCtrl">
+
+    <!--CREATE A NEW STRAP-->
+    <div class="panel panel-default marketing">
+        <div class="panel-heading">
+            <h3>Create New Strap</h3>
+        </div>
+
+        <table class="table">
+            <thead>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Save Strap</th>
+            </thead>
+            <tr>
+                <td><input type='text' class="form-control" placeholder="Name" ng-model='newStrap.name' ng-change='strapNew.specificsChanged = true'></td>
+                <td><input type='text' class="form-control" placeholder="Type" ng-model='newStrap.type' ng-change='strapNew.specificsChanged = true'></td>
+                <td><input type='number' class="form-control" placeholder="Qty" ng-model='newStrap.quantity' ng-change='strapNew.specificsChanged = true'></td>
+                <td>
+                    <button class='btn btn-md btn-success' type="button" ng-click='createStrap(strapNew)' ng-disabled='!strapNew.specificsChanged'>
+                        CREATE <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <div class="panel-footer">
+            <div class="alert alert-success" ng-show="savedMessage">{{savedMessage}}</div>
+        </div>
+    </div>
+
+    <!--EDIT OR DELETE STRAPS-->
+    <div class="panel panel-default marketing">
+        <div class="panel-heading">
+            <h3>Edit Straps <span class="label label-primary pull-right">{{strapQuery.items.length}} Straps</span></h3>
+        </div>
+        <!--{{filter}}-->
+        <table class="table table-condensed table-hover">
+            <thead>
+            <th>Name <a ng-click="filter = 'name'">&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></a></th>
+            <th>Type <a ng-click="filter = 'type'">&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></a></th>
+            <th>Quantity <a ng-click="filter = 'quantity'">&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></a></th>
+            <th>Update</th>
+            </thead>
+            <tr class="form-group form-inline" ng-repeat="strap in strapQuery.items | orderBy:filter">
+                <td><input type="text" class="form-control" placeholder="Name" ng-model="strap.name" ng-change='strap.specificsChanged = true'></td>
+                <td><input type="text" class="form-control" placeholder="Type" ng-model="strap.type" ng-change='strap.specificsChanged = true'></td>
+                <td><input type="number" class="form-control" placeholder="Qty" ng-model="strap.quantity" ng-change='strap.specificsChanged = true'></td>
+                <td>
+                    <div class="btn-group btn-group-md">
+                        <button class="btn btn-md btn-primary" ng-click="save(strap)" ng-disabled="!strap.specificsChanged"><span class="glyphicon glyphicon-upload"></span></button>
+                        <button class="btn btn-md btn-danger" ng-click="delete(strap)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="panel-footer">
+            <div class="alert alert-warning" ng-show="deletedMessage">{{deletedMessage}}</div>
+            <div class="alert alert-info" ng-show="updatedMessage">{{updatedMessage}}</div>
+        </div>
+    </div>
+
+</div>
+
+<div ui-view></div>

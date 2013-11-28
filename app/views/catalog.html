@@ -1,0 +1,83 @@
+<div class="catalog container" ng-controller="CatalogCtrl">
+    <!--<div class="lead">-->
+        <!--<h3>Browse Catalog</h3>-->
+    <!--</div>-->
+
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#catalog-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">Browse Catalog</span>
+        </div>
+
+        <!--{{currentMaterial}}-->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="catalog-navbar">
+            <form class="navbar-form navbar-right form-inline" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Strap model" ng-model="catalogQuery"
+                           typeahead="strap.model as strap.modelName for strap in strapQuery.items | filter:$viewValue">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">{{currentType || 'Material'}} <b class="caret"></b></a>
+                        <!--<input type="text" class="form-control" placeholder="Material" ng-model="strapTypes" typeahead="type as type for type in strapTypes | filter:$viewValue">-->
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="type in strapTypes"><a ng-click="setQuery('type', type); setCurrentType(type)">{{ type }}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown form-inline">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentColor || 'Color'}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="color in strapColors"><a ng-click="setQuery('colorName', color); setCurrentColor(color)">{{ color }}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown form-inline">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentSize || 'Size'}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="size in strapSizes"><a ng-click="setQuery('size', size); setCurrentSize(size)">{{ size }}mm</a></li>
+                    </ul>
+                </li>
+                <li class="form-inline">
+                    <a ng-click="resetOptions()"><span class="glyphicon glyphicon-remove"></span></a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <span class="badge pull-right">{{strapQuery.items.length}} Results</span>
+
+    <!--CATALOG ITEM LISTINGS-->
+    <div class="catalog-list">
+
+        <div class="catalog-item" ng-repeat="strap in strapQuery.items | filter:catalogQuery">
+            <div class="catalog-item-img">
+                <img class="catalog-item-imgUrl" ng-click="open(strap)"
+                     ng-src="http://www.barretanspach.com/photos/Strap-Models-800/{{ strap.model }}-{{ strap.color }}.jpg">
+            </div>
+            <hr>
+            <h4 class="catalog-item-title">{{ strap.modelName }}</h4>
+            <p>
+                <span ng-switch on="strap.gender">
+                    <span ng-switch-when="L">Women's</span>
+                    <span ng-switch-when="M">Men's</span>
+                </span>
+                <span ng-switch on="strap.length">
+                    <span ng-switch-when="L">Long,</span>
+                    <span ng-switch-default>Regular,</span>
+                </span>
+                <span class="">{{ strap.size }}mm</span>
+            </p>
+            <p><span class="catalog-item-model">{{ strap.modelNo }}</span></p>
+        </div>
+
+    </div>
+</div>
+<!--<div ui-view></div>-->

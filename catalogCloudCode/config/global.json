@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Artisan of Italy": {
+            "applicationId": "vsph4BARvMHNuQJoRU1lDxhxg1otvLCa4ArSrERA", 
+            "masterKey": "6yiFvnxYChwbM2MSTfMbM8JERDUrcS5s0FHXSpXr"
+        }, 
+        "_default": {
+            "link": "Artisan of Italy"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.13"
+    }
+}
