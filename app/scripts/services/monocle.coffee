@@ -14,10 +14,19 @@ strapApp.factory('monocle', ['$http', 'parseWrapper', ($http, parseWrapper) ->
 		@parseClassName: "Strap"
 		@register: () ->
 			#this is where you define your classes properities -- or column names
-			name: undefined,
-			type: undefined,
-			quantity: undefined,
-			imgUrl: undefined
+			imgUrl: undefined,
+			barcode: undefined,
+			model: undefined,
+			modelNo: undefined,
+			modelName: undefined,
+			colorName: undefined,
+			color: undefined,
+			size: undefined,
+			geder: undefined,
+			length: undefined,
+			msrp: undefined,
+			cost: undefined,
+			price: undefined
 
 
 

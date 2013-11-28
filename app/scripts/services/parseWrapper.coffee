@@ -191,6 +191,7 @@ angular.module('schyllingApp').factory('parseWrapper', ['$http', '$filter','$coo
 			params.include = this.fieldsToInclude.join(",") if this.fieldsToInclude.length > 0
 
 			config = { method: "GET", url: this._getURL(), params: params, transformResponse: (data) => _parseTransformResponse(data, this.targetClass) }
+			$log.info(config.params)
 
 			collectionPromise = _http(config)
 			this.isBusy = true

@@ -30,7 +30,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">{{currentType || 'Material'}} <b class="caret"></b></a>
                         <!--<input type="text" class="form-control" placeholder="Material" ng-model="strapTypes" typeahead="type as type for type in strapTypes | filter:$viewValue">-->
                     <ul class="dropdown-menu">
-                        <li ng-repeat="type in strapTypes"><a ng-click="setQuery('type', type); setCurrentType(type)">{{ type }}</a></li>
+                        <li ng-repeat="type in strapTypes">
+                            <a ng-click="setQuery('type', type); setCurrentType(type)">{{ type }}</a><span ng-show='!inAvailableTypes(type)' class='glyphicon glyphicon-asterisk'></span>
+                        </li>
                     </ul>
                 </li>
                 <li class="dropdown form-inline">
@@ -57,7 +59,7 @@
     <!--CATALOG ITEM LISTINGS-->
     <div class="catalog-list">
 
-        <div class="catalog-item" ng-repeat="strap in strapQuery.items | filter:catalogQuery">
+        <div class="catalog-item" ng-repeat="strap in strapQuery.items | filter:catalogQuery | limitTo: 20">
             <div class="catalog-item-img">
                 <img class="catalog-item-imgUrl" ng-click="open(strap)"
                      ng-src="http://www.barretanspach.com/photos/Strap-Models-800/{{ strap.model }}-{{ strap.color }}.jpg">
